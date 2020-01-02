@@ -1,5 +1,7 @@
 package com.kiki.mapper;
 
+import java.util.List;
+
 import com.kiki.bean.TbItem;
 
 public interface TbItemMapper {
@@ -9,5 +11,7 @@ public interface TbItemMapper {
 	 * @return
 	 */
 	TbItem findTbItemById(Long tbItemId);
+
+	List<TbItem> findTbItems();
 
 }
