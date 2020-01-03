@@ -7,7 +7,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="findTbItemById" parameterType="long" resultType="com.kiki.bean.TbItem">
 		SELECT * FROM tbitem WHERE id = #{id}
 	</select>
-	<select id="findTbItem" resultType="com.kiki.bean.TbItem">
-		SELECT * FROM tbitem
+	<select id="findTbItems" parameterType="int" resultType="com.kiki.bean.TbItem">
+		SELECT * FROM tbitem LIMIT #{0},#{1} 
+	</select>
+	<select id="getCount" parameterType="int" resultType="java.lang.Integer">
+		select count(*) from tbitem;
 	</select>
 </mapper>

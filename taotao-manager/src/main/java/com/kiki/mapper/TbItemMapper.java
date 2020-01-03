@@ -12,6 +12,12 @@ public interface TbItemMapper {
 	 */
 	TbItem findTbItemById(Long tbItemId);
 
-	List<TbItem> findTbItems();
+	
+
+	List<TbItem> findTbItems(Integer page, Integer limit);
+
+
+
+	int getCount();
 
 }

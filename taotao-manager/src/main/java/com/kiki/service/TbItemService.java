@@ -16,5 +16,7 @@ public interface TbItemService {
 	 * 查询所有商品
 	 * @return
 	 */
-	List<TbItem> findTbItems(); 
+	
+	List<TbItem> findTbItems(Integer page, Integer limit);
+	int getCount(); 
 }

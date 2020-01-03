@@ -18,12 +18,14 @@ public class TbItemServiceImpl implements TbItemService {
 		return tbItem;
 	}
 	@Override
-	public List<TbItem> findTbItems() {
-		List<TbItem> tbItems= tbItemMapper.findTbItems();
-		for (TbItem tbItem : tbItems) {
-			
-		}
+	public List<TbItem> findTbItems(Integer page, Integer limit) {
+		List<TbItem> tbItems=tbItemMapper.findTbItems(page,limit);
 		return tbItems;
 	}
-
+	@Override
+	public int getCount() {
+		int count=tbItemMapper.getCount();
+		return count;
+	}
+	
 }

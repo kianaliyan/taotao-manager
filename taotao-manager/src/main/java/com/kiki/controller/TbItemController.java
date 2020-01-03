@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.kiki.bean.TbItem;
+import com.kiki.domain.PageUtils;
 import com.kiki.service.TbItemService;
 
 @Controller
@@ -37,12 +38,16 @@ public class TbItemController {
 	 * @return
 	 */
 	@RequestMapping("/showItem")
-	public Map<String, Object> showItem(){
-		List<TbItem> tbItems =tbItemService.findTbItems();
-		 Map<String, Object> map = new HashMap<String, Object>();
-	        map.put("code", 0);
-	        map.put("msg", "");
-	        map.put("data", tbItems);
-	        return map;
+	@ResponseBody
+	public PageUtils showItem(Integer page,Integer limit){
+		List<TbItem> tbItems =tbItemService.findTbItems(page,limit);
+		PageUtils pageUtils=new PageUtils();
+		page=(page-1)*limit;
+		int count=tbItemService.getCount();
+		pageUtils.setCode(0);
+		pageUtils.setMsg("");
+		pageUtils.setCount(count);
+		pageUtils.setData(tbItems);
+		return pageUtils;
 	}
 }
