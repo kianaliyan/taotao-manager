@@ -1,19 +1,20 @@
 package com.kiki.controller;
 
-import java.util.HashMap;
+
 import java.util.List;
-import java.util.Map;
+
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
+
 
 import com.kiki.bean.TbItem;
 import com.kiki.domain.PageUtils;
 import com.kiki.service.TbItemService;
+import com.kiki.utils.ItemResult;
 
 @Controller
 @RequestMapping("/item")
@@ -50,5 +51,20 @@ public class TbItemController {
 		pageUtils.setData(tbItems);
 		return pageUtils;
 	}
-	
+	@RequestMapping("/deleteItems")
+	@ResponseBody
+	public ItemResult deleteItems(Integer[] ids){
+		tbItemService.deleteItems(ids);
+		ItemResult itemResult=new ItemResult(200,"删除成功");
+		return itemResult;
+		
+	}
+	@RequestMapping("/deleteItem")
+	@ResponseBody
+	public ItemResult deleteItem(String id){
+		tbItemService.deleteItem(id);
+		ItemResult itemResult=new ItemResult(200,"删除成功");
+		return itemResult;
+		
+	}
 }

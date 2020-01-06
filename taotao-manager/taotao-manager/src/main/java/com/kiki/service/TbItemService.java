@@ -18,5 +18,20 @@ public interface TbItemService {
 	 */
 	
 	List<TbItem> findTbItems(Integer page, Integer limit);
-	int getCount(); 
+	/**
+	 * 得到总记录条数
+	 * @return
+	 */
+	int getCount();
+	/**
+	 * 批量删除
+	 * @param ids
+	 */
+	void deleteItems(Integer[] ids);
+	/**
+	 * 单行删除
+	 * @param id
+	 */
+	void deleteItem(String id);
+	 
 }

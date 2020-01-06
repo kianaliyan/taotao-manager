@@ -21,6 +21,7 @@
 	<script type="text/html" id="toolbarDemo">
  	 <div class="layui-btn-container">
    	 	<button class="layui-btn layui-btn-sm" lay-event="addTbItem">添加</button>
+<button class="layui-btn layui-btn-sm" lay-event="deleteAll">批量删除</button>
 		<button class="layui-btn layui-btn-sm" lay-event="upTbitem">上架</button>
     	<button class="layui-btn layui-btn-sm" lay-event="downTbitem">下架</button>
  	 </div>
@@ -28,7 +29,7 @@
 
 	<script type="text/html" id="barDemo">
   <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
-  <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+  <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="deleteItem">删除</a>
 </script>
 	<!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->
 
@@ -48,6 +49,7 @@
 					icon : 'layui-icon-tips'
 				} ],
 				page : true,
+				id : 'tableTest',
 				cols : [ [ {
 					type : 'checkbox',
 					fixed : 'left'
@@ -115,23 +117,78 @@
 			case 'downTbitem':
 				layer.msg(checkStatus.isAll ? '全选' : '未全选');
 				break;
+			case 'deleteAll':
+				var ids="";
+				 for (var i=0;i<data.length;i++){
+				 ids+=data[i].id+",";
+				 }
+				 if(data.length === 0){
+				 layer.msg('请选择一行');
+				 } else {
+					 layer.confirm('确定要删除吗？'+ids,function(index){
+						 $.ajax({
+								//几个参数需要注意一下
+								type : "post",//方法类型
+								url : "/item/deleteItems",//url
+								data : {
+									"ids" : ids
+								},
+								dataType : "json",
+								success : function(data) {
+									console.log(result);//打印服务端返回的数据(调试用)
+									if (data.status==200) {
+										layer.msg('删除成功');
+									} else {
+										layer.msg('删除失败');
+									};
+								},
+								error : function() {
+									alert("请稍后重试！");
+								}
+							})
+						 });
+					 }			
+				 break;
 
-			//自定义头工具栏右侧图标 - 提示
+					//自定义头工具栏右侧图标 - 提示
 			case 'LAYTABLE_TIPS':
 				layer.alert('这是工具栏右侧自定义的一个图标按钮');
 				break;
 			}
 			;
-		});
+		});		
 
 		//监听行工具事件
 		table.on('tool(test)', function(obj) {
 			var data = obj.data;
 			//console.log(obj)
-			if (obj.event === 'del') {
+
+			if (obj.event === 'deleteItem') {
 				layer.confirm('真的删除行么', function(index) {
 					obj.del();
 					layer.close(index);
+					//向服务端发送删除指令
+					$.ajax({
+						//几个参数需要注意一下
+						type : "post",//方法类型
+						url : "/item/deleteItem",//url
+						data : {
+							"id" : data.id
+						},
+						dataType : "json",
+						async : false,
+						success : function(data) {
+							console.log(result);//打印服务端返回的数据(调试用)
+							if (data.status==200) {
+								layer.msg('删除成功');
+							} else {
+								layer.msg('删除失败');
+							};
+						},
+						error : function() {
+							alert("请稍后重试！");
+						}
+					})
 				});
 			} else if (obj.event === 'edit') {
 				layer.prompt({

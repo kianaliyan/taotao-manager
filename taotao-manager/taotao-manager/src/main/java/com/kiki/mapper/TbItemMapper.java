@@ -20,4 +20,16 @@ public interface TbItemMapper {
 
 	int getCount();
 
+
+	
+	void deleteItems(Integer[] ids);
+	
+	
+	
+	void deleteItem(String id);
+
+
+
+	
+
 }

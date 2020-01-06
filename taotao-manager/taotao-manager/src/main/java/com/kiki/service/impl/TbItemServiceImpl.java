@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.kiki.bean.TbItem;
 import com.kiki.mapper.TbItemMapper;
 import com.kiki.service.TbItemService;
+import com.kiki.utils.ItemResult;
 @Service
 public class TbItemServiceImpl implements TbItemService {
 	@Autowired
@@ -27,5 +28,17 @@ public class TbItemServiceImpl implements TbItemService {
 		int count=tbItemMapper.getCount();
 		return count;
 	}
+	@Override
+	public void deleteItems(Integer[] ids) {
+		tbItemMapper.deleteItems(ids);
+		
+		
+	}
+	@Override
+	public void deleteItem(String id) {
+		tbItemMapper.deleteItem(id);
+		
+	}
+	
 	
 }
