@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kiki.bean.TbItem;
+import com.kiki.domain.CategoryStatistics;
+import com.kiki.domain.EchartsResult;
 import com.kiki.domain.ItemResult;
 import com.kiki.mapper.TbItemMapper;
 import com.kiki.service.TbItemService;
@@ -68,6 +70,18 @@ public class TbItemServiceImpl implements TbItemService {
 	public List<TbItem> findItemBysearch(String title, String sellPoint) {
 		List<TbItem> tbItems=tbItemMapper.findItemBysearch(title,sellPoint);
 		return tbItems;
+	}
+	@Override
+	public List<EchartsResult> categoryStatistics() {
+		List<EchartsResult> results = new ArrayList<EchartsResult>();
+		EchartsResult result = new EchartsResult();
+		result.setName("访问来源");
+		result.setType("pie");
+		result.setRadius("55%");
+		List<CategoryStatistics> CategoryStatistics= tbItemMapper.findTbItemCat();
+		result.setData(CategoryStatistics);
+		results.add(result);
+		return results;
 	}
 	
 	

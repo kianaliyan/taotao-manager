@@ -116,6 +116,7 @@
 				 $("#content").load("/jsp/showItem.jsp");
 			 -->
 			<div id="content" style="padding: 15px;">内容主体区域</div>
+			<div id="main" style="width: 600px; height: 300px;"></div>
 		</div>
 
 		<div class="layui-footer">
@@ -126,9 +127,11 @@
 	<script src="${pageContext.request.contextPath }/layui/layui.js"></script>
 	<script
 		src="${pageContext.request.contextPath }/js/jquery-2.1.0.min.js"></script>
+	<script
+		src="${pageContext.request.contextPath }/js/index.js"></script>
 
-<script>
-//JavaScript代码区域s
+<!-- <script>
+//JavaScript代码区域
 layui.use('element', function(){
   var element = layui.element;
   
@@ -142,6 +145,26 @@ $("#addItem").click(function(){
 $("#addItemCat").click(function(){
 	$("#content").load("/jsp/addItemCat.jsp");
 })
-</script>
+</script> -->
+<script>
+        // 绘制图表。
+        echarts.init(document.getElementById('main')).setOption({
+            series : [
+                      {
+                          name: '访问来源',
+                          type: 'pie',
+                          radius: '55%',
+                          data:[
+                              {value:235, name:'视频广告'},
+                              {value:274, name:'联盟广告'},
+                              {value:310, name:'邮件营销'},
+                              {value:335, name:'直接访问'},
+                              {value:400, name:'搜索引擎'}
+                          ]
+                      }
+                  ]
+        });
+    </script>
+
 </body>
 </html>

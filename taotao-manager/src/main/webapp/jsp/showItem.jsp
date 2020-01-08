@@ -242,29 +242,30 @@
 					});
 				}
 			});
+			 //监听提交
+			  form.on('submit(search_btn)', function(data){
+			    layer.alert(JSON.stringify(data.field), {
+			      title: '最终的提交信息'
+			    })
+			    table.reload('tableReload', {
+					page : {
+						curr : 1
+					//重新从第 1 页开始
+					},
+					where : {//这里传参 向后台   
+						title : title,
+						sellPoint : sellPoint
+					//可传多个参数到后台... ，分隔 
+					},
+					url : '/item/findItemBysearch'//后台做模糊搜索接口路径 
+					,
+					method : 'post'
+				});
+			    return false;
+			  });
 			
 		});
-		 //监听提交
-		  form.on('submit(search_btn)', function(data){
-		    layer.alert(JSON.stringify(data.field), {
-		      title: '最终的提交信息'
-		    })
-		    table.reload('tableReload', {
-				page : {
-					curr : 1
-				//重新从第 1 页开始
-				},
-				where : {//这里传参 向后台   
-					title : title,
-					sellPoint : sellPoint
-				//可传多个参数到后台... ，分隔 
-				},
-				url : '/item/findItemBysearch'//后台做模糊搜索接口路径 
-				,
-				method : 'post'
-			});
-		    return false;
-		  });
+		
 		//搜索条件查询(提交)
 		
 	/* 	form.on('submit(search_btn)', function(data) {

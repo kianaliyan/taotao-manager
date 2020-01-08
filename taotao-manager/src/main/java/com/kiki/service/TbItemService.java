@@ -3,6 +3,7 @@ package com.kiki.service;
 import java.util.List;
 
 import com.kiki.bean.TbItem;
+import com.kiki.domain.EchartsResult;
 import com.kiki.domain.ItemResult;
 
 
@@ -42,6 +43,17 @@ public interface TbItemService {
 	 * @return
 	 */
 	ItemResult updateItems(List<TbItem> tbItems, Integer type);
+	/**
+	 * 搜索
+	 * @param title
+	 * @param sellPoint
+	 * @return
+	 */
 	List<TbItem> findItemBysearch(String title, String sellPoint);
+	/**
+	 * 统计
+	 * @return
+	 */
+	List<EchartsResult> categoryStatistics();
 	 
 }

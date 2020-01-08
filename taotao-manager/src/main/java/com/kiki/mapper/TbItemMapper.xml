@@ -54,12 +54,17 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 			</where>
 		</if>
 	</update>
-	<select id="findItemBysearch" parameterType="String"
-	resultType="com.kiki.bean.TbItem">
-	SELECT * FROM tbitem
-	<where>
-		((title like CONCAT('%',#{title},'%') ) or (sellPoint like
-        CONCAT('%',#{sellPoint},'%') ))
-	</where>
-</select>
+	<select id="findItemBysearch" parameterType="String" resultType="com.kiki.bean.TbItem">
+		SELECT * FROM tbitem
+		<where>
+			((title like CONCAT('%',#{title},'%') ) or (sellPoint like
+	        CONCAT('%',#{sellPoint},'%') ))
+		</where>
+	</select>
+	<select id="findTbItemCat" resultType="com.kiki.domain.CategoryStatistics">
+		SELECT * FROM tbitemcat 
+		<where>
+			isParent=1 AND parentId=0	
+		</where>
+	</select>
 </mapper>

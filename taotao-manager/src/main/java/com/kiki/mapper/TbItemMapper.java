@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.annotations.Param;
 
 import com.kiki.bean.TbItem;
+import com.kiki.domain.CategoryStatistics;
 
 public interface TbItemMapper {
 	/**
@@ -37,6 +38,10 @@ public interface TbItemMapper {
 
 
 	List<TbItem> findItemBysearch(String title, String sellPoint);
+
+
+
+	List<CategoryStatistics> findTbItemCat();
 
 
 

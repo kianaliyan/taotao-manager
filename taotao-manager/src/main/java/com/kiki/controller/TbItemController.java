@@ -12,8 +12,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-
+import com.fasterxml.jackson.databind.jsonFormatVisitors.JsonArrayFormatVisitor;
 import com.kiki.bean.TbItem;
+import com.kiki.domain.EchartsResult;
 import com.kiki.domain.ItemResult;
 import com.kiki.domain.PageUtils;
 import com.kiki.service.TbItemService;
@@ -95,4 +96,13 @@ public class TbItemController {
 //		return pageUtils;
 //		
 //	}
+	/**
+	 * 首页统计图
+	 */
+	@RequestMapping("/categoryStatistics")
+	@ResponseBody
+	public void categoryStatistics(){
+		List<EchartsResult> results=tbItemService.categoryStatistics();
+		
+	}
 }
