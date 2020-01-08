@@ -2,6 +2,8 @@ package com.kiki.mapper;
 
 import java.util.List;
 
+import org.apache.ibatis.annotations.Param;
+
 import com.kiki.bean.TbItem;
 
 public interface TbItemMapper {
@@ -22,11 +24,23 @@ public interface TbItemMapper {
 
 
 	
-	void deleteItems(Integer[] ids);
+	int deleteItems(@Param("ids")List<Long> ids);
 	
 	
 	
 	void deleteItem(String id);
+
+
+
+	int updateItemByIds(List<Long> ids, Integer type);
+
+
+
+	List<TbItem> findItemBysearch(String title, String sellPoint);
+
+
+
+	
 
 
 

@@ -3,6 +3,7 @@ package com.kiki.service;
 import java.util.List;
 
 import com.kiki.bean.TbItem;
+import com.kiki.utils.ItemResult;
 
 
 public interface TbItemService {
@@ -25,13 +26,22 @@ public interface TbItemService {
 	int getCount();
 	/**
 	 * 批量删除
+	 * @param i 
 	 * @param ids
 	 */
-	void deleteItems(Integer[] ids);
+	//ItemResult deleteItems(List<TbItem> tbItems);
 	/**
 	 * 单行删除
 	 * @param id
 	 */
 	void deleteItem(String id);
+	/**
+	 * 修改商品状态
+	 * @param tbItems
+	 * @param i
+	 * @return
+	 */
+	ItemResult updateItems(List<TbItem> tbItems, Integer type);
+	List<TbItem> findItemBysearch(String title, String sellPoint);
 	 
 }

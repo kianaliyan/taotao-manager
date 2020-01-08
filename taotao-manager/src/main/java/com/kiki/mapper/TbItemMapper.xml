@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.kiki.mapper.TbItemMapper">
+	<select id="findTbItemById" parameterType="long" resultType="com.kiki.bean.TbItem">
+		SELECT * FROM tbitem WHERE id = #{id}
+	</select>
+	<select id="findTbItems" parameterType="int" resultType="com.kiki.bean.TbItem">
+		SELECT * FROM tbitem LIMIT #{0},#{1} 
+	</select>
+	<select id="getCount" parameterType="int" resultType="java.lang.Integer">
+		select count(*) from tbitem;
+	</select>
+	<!--  
+	<delete id="deleteItems">
+		UPDATE tbitem SET status =2
+		<where>
+			<foreach collection="ids" open="id in(" separator="," close=")" item="id">
+				#{id}
+			</foreach>
+		</where>
+		
+	</delete>
+	-->
+	<delete id="deleteItem" parameterType="string">
+		DELETE FROM tbitem WHERE id=#{id}
+	</delete>
+	
+	<update id="updateItemByIds">
+		<if test="type==0">
+			UPDATE tbitem SET status = 0
+			<where>
+				<foreach collection="ids" open="id in(" separator="," close=")" item="id">
+					#{id}
+				</foreach>
+			</where>
+		</if>
+		<if test="type==1">
+			UPDATE tbitem SET status = 1
+			<where>
+				<foreach collection="ids" open="id in(" separator="," close=")" item="id">
+					#{id}
+				</foreach>
+			</where>
+		</if>
+		<if test="type==2">
+			UPDATE tbitem SET status = 2
+			<where>
+				<foreach collection="ids" open="id in(" separator="," close=")" item="id">
+					#{id}
+				</foreach>
+			</where>
+		</if>
+	</update>
+	<select id="findItemBysearch" parameterType="String"
+	resultType="com.kiki.bean.TbItem">
+	SELECT * FROM tbitem
+	<where>
+		((title like CONCAT('%',#{title},'%') ) or (sellPoint like
+        CONCAT('%',#{sellPoint},'%') ))
+	</where>
+</select>
+</mapper>

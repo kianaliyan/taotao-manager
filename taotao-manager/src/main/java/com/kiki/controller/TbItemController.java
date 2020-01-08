@@ -7,7 +7,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 
@@ -53,9 +55,8 @@ public class TbItemController {
 	}
 	@RequestMapping("/deleteItems")
 	@ResponseBody
-	public ItemResult deleteItems(Integer[] ids){
-		tbItemService.deleteItems(ids);
-		ItemResult itemResult=new ItemResult(200,"删除成功");
+	public ItemResult deleteItems(@RequestBody List<TbItem> tbItems){
+		ItemResult itemResult = tbItemService.updateItems(tbItems,0);
 		return itemResult;
 		
 	}
@@ -63,8 +64,35 @@ public class TbItemController {
 	@ResponseBody
 	public ItemResult deleteItem(String id){
 		tbItemService.deleteItem(id);
-		ItemResult itemResult=new ItemResult(200,"删除成功");
-		return itemResult;
+		
+		return null;
 		
 	}
+	@RequestMapping("/upTbitem")
+	@ResponseBody
+	public ItemResult upTbitem(@RequestBody List<TbItem> items){
+		ItemResult result = tbItemService.updateItems(items,1);
+		return result;
+	}
+	@RequestMapping("/downTbitem")
+	@ResponseBody
+	public ItemResult downTbitem(@RequestBody List<TbItem> items){
+		ItemResult result = tbItemService.updateItems(items,0);
+		System.out.println(result);
+		return result;
+	}
+//	@RequestMapping("/downTbitem")
+//	@ResponseBody
+//	public PageUtils findItemBysearch(@RequestParam("title")String title,@RequestParam("sellPoint")String sellPoint){
+//		List<TbItem> tbItems =tbItemService.findItemBysearch(title,sellPoint);
+//		PageUtils pageUtils=new PageUtils();
+//		
+//		int count=tbItemService.getCount();
+//		pageUtils.setCode(0);
+//		pageUtils.setMsg("");
+//		pageUtils.setCount(count);
+//		pageUtils.setData(tbItems);
+//		return pageUtils;
+//		
+//	}
 }

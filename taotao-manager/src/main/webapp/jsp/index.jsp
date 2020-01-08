@@ -7,6 +7,7 @@
 <title>淘淘商城后台</title>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath }/layui/css/layui.css">
+	<script type="text/javascript" src="${pageContext.request.contextPath }/js/echarts-en.common.min.js"></script>
 </head>
 <body class="layui-layout-body">
 	<div class="layui-layout layui-layout-admin">
@@ -126,7 +127,7 @@
 	<script
 		src="${pageContext.request.contextPath }/js/jquery-2.1.0.min.js"></script>
 
-	<script>
+<script>
 //JavaScript代码区域s
 layui.use('element', function(){
   var element = layui.element;
@@ -134,6 +135,9 @@ layui.use('element', function(){
 });
 $("#showItem").click(function(){
 	 $("#content").load("/jsp/showItem.jsp");
+})
+$("#addItem").click(function(){
+	 $("#content").load("/jsp/addItem.jsp");
 })
 $("#addItemCat").click(function(){
 	$("#content").load("/jsp/addItemCat.jsp");
