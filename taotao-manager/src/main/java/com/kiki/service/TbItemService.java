@@ -3,7 +3,7 @@ package com.kiki.service;
 import java.util.List;
 
 import com.kiki.bean.TbItem;
-import com.kiki.utils.ItemResult;
+import com.kiki.domain.ItemResult;
 
 
 public interface TbItemService {

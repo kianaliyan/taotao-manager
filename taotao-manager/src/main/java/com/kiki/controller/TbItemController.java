@@ -14,9 +14,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 
 import com.kiki.bean.TbItem;
+import com.kiki.domain.ItemResult;
 import com.kiki.domain.PageUtils;
 import com.kiki.service.TbItemService;
-import com.kiki.utils.ItemResult;
 
 @Controller
 @RequestMapping("/item")
@@ -81,7 +81,7 @@ public class TbItemController {
 		System.out.println(result);
 		return result;
 	}
-//	@RequestMapping("/downTbitem")
+//	@RequestMapping("/findItemBysearch")
 //	@ResponseBody
 //	public PageUtils findItemBysearch(@RequestParam("title")String title,@RequestParam("sellPoint")String sellPoint){
 //		List<TbItem> tbItems =tbItemService.findItemBysearch(title,sellPoint);

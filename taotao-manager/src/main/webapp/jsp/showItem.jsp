@@ -29,7 +29,7 @@
 						class="layui-input">
 				</div>
 			</div>
-			<button class="layui-btn" id="search" lay-submit="search_submits" lay-filter="searche_btn">搜索</button>
+			<button class="layui-btn" id="search" lay-submit="" lay-filter="searche_btn">搜索</button>
 		</div>
 	</form>
 	<table class="layui-table" id="demo" lay-filter="test" lay-skin="line">
@@ -244,15 +244,36 @@
 			});
 			
 		});
-		
+		 //监听提交
+		  form.on('submit(search_btn)', function(data){
+		    layer.alert(JSON.stringify(data.field), {
+		      title: '最终的提交信息'
+		    })
+		    table.reload('tableReload', {
+				page : {
+					curr : 1
+				//重新从第 1 页开始
+				},
+				where : {//这里传参 向后台   
+					title : title,
+					sellPoint : sellPoint
+				//可传多个参数到后台... ，分隔 
+				},
+				url : '/item/findItemBysearch'//后台做模糊搜索接口路径 
+				,
+				method : 'post'
+			});
+		    return false;
+		  });
 		//搜索条件查询(提交)
 		
 	/* 	form.on('submit(search_btn)', function(data) {
 			var formData = data.field;
 			var title = data.field.title;
 			var sellPoint = data.field.sellPoint;
-			url = formData.url, icon = formData.icon,
-					parent_id = formData.parent_id; //执行重载
+			url = formData.url,
+			icon = formData.icon,
+			parent_id = formData.parent_id; //执行重载
 			table.reload('tableReload', {
 				page : {
 					curr : 1
@@ -263,7 +284,7 @@
 					sellPoint : sellPoint
 				//可传多个参数到后台... ，分隔 
 				},
-				url : '/item/downTbitem'//后台做模糊搜索接口路径 
+				url : '/item/findItemBysearch'//后台做模糊搜索接口路径 
 				,
 				method : 'post'
 			});

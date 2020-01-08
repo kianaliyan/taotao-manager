@@ -1,4 +1,4 @@
-package com.kiki.utils;
+package com.kiki.domain;
 
 import java.util.List;
 

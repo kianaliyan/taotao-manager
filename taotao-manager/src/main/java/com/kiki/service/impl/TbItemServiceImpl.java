@@ -7,9 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.kiki.bean.TbItem;
+import com.kiki.domain.ItemResult;
 import com.kiki.mapper.TbItemMapper;
 import com.kiki.service.TbItemService;
-import com.kiki.utils.ItemResult;
 @Service
 public class TbItemServiceImpl implements TbItemService {
 	@Autowired
