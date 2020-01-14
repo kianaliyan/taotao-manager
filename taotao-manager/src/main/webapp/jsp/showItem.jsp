@@ -36,19 +36,18 @@
 
 	</table>
 
-	
  	 <div class="layui-btn-container" id="toolbarDemo">
    	 	<button class="layui-btn layui-btn-sm" lay-event="addTbItem">添加</button>
 		<button class="layui-btn layui-btn-sm" lay-event="deleteItems">批量删除</button>
 		<button class="layui-btn layui-btn-sm" lay-event="upTbitem">上架</button>
     	<button class="layui-btn layui-btn-sm" lay-event="downTbitem">下架</button>
  	 </div>
-	
 	<div id="barDemo">
 		<a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a> <a
 			class="layui-btn layui-btn-danger layui-btn-xs"
 			lay-event="deleteItem">删除</a>
-	</div>
+	<div>
+	
 
 
 	<!-- 注意：如果你直接复制所有代码到本地，上述js路径需要改成你本地的 -->

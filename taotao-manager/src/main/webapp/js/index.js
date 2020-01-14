@@ -22,7 +22,6 @@ $(function(){
 				console.log(msg);
 				echarts.init(document.getElementById('main')).setOption(msg);
 			}
-			
 		});*/
 	})
 	
